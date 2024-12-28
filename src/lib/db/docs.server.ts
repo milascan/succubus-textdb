@@ -1,5 +1,5 @@
 import { collection, Document, kvdex, model } from "@olli/kvdex";
-import { decodeTime, ulid } from "@std/ulid";
+import { decodeTime, monotonicUlid } from "@std/ulid";
 import z from "zod";
 
 const kv = await Deno.openKv();
@@ -68,7 +68,7 @@ export const set = async (doc: TDocumentParams) => {
       mtime: time,
     },
     set: {
-      id: ulid(),
+      id: monotonicUlid(),
       parent: doc.path.slice(0, -1),
       ctime: time,
       mtime: time,

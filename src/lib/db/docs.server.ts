@@ -6,7 +6,7 @@ const kv = await Deno.openKv();
 
 export const DocumentParamsModel = z.object({
   title: z.string(),
-  content: z.string(),
+  content: z.ostring(),
   path: z.array(z.string()).min(1),
 });
 

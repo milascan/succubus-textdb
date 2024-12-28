@@ -16,3 +16,6 @@ export const transfer = (data: unknown, opts: ResponseInit = {}) =>
       ...(opts.headers ?? {}),
     },
   });
+
+export const sort_str = (a: string, b: string) => a < b ? -1 : a === b ? 0 : 1;
+export const sort_num = (a: number, b: number) => a - b;

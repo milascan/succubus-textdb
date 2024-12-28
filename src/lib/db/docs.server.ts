@@ -1,8 +1,7 @@
 import { collection, Document, kvdex, model } from "@olli/kvdex";
 import { decodeTime, monotonicUlid } from "@std/ulid";
 import z from "zod";
-
-const kv = await Deno.openKv();
+import { kv } from "$lib/db/db.server.ts";
 
 export const DocumentParamsModel = z.object({
   title: z.string(),
@@ -19,7 +18,7 @@ type TDocument = TDocumentParams & {
 };
 
 const db = kvdex({
-  kv: kv,
+  kv,
   schema: {
     docs: collection(
       model<TDocument>(),
@@ -47,6 +46,15 @@ export const get_items = async (parent_path: string[]) => {
 export const has = async (path: string[]) => {
   const res = await db.docs.findByPrimaryIndex("path", path);
   return !!res;
+};
+
+export const ref = async (id: string) => {
+  const res = await db.docs.find(id);
+  if (res) {
+    return map_doc(res);
+  } else {
+    return null;
+  }
 };
 
 export const get = async (path: string[]) => {

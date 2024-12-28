@@ -5,7 +5,7 @@
 			"type": "deno",
 			"command": "run",
 			"args": [
-				"--env-file=.env.example",
+				"--env-file=.env.local",
 				"dev"
 			],
 			"problemMatcher": [

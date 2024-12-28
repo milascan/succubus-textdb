@@ -7,7 +7,7 @@ export const load = () => {
     api: async (url, data = null, opts = {}) => {
       let res;
       try {
-        res = await fetch(url, {
+        res = await (opts.fetch ?? fetch)(url, {
           ...opts,
           method: "POST",
           body: encode(data),

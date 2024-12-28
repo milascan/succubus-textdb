@@ -1,4 +1,4 @@
-import { get } from "$lib/db/docs.server.ts";
+import { get, ref } from "$lib/db/docs.server.ts";
 import { request_data, transfer } from "$lib/utils.ts";
 import { error } from "@sveltejs/kit";
 
@@ -14,10 +14,16 @@ export const OPTIONS = () => {
 
 export const POST = async ({ request }) => {
   try {
-    const { path } = await request_data(request);
-    return transfer(await get(path), {
-      headers: { "Access-Control-Allow-Origin": "*" },
-    });
+    const { id, path } = await request_data(request);
+    if (id) {
+      return transfer(await ref(id), {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
+    } else {
+      return transfer(await get(path), {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
+    }
   } catch (e) {
     return error(400, e.toString());
   }

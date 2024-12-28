@@ -5,7 +5,6 @@
     const path = [];
 
     async function get_items() {
-        await api("/api/doc/get", { path });
         return api("/api/doc/get-items", { path });
     }
 </script>

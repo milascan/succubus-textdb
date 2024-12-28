@@ -45,6 +45,7 @@
 		"@std/ulid": "npm:@jsr/std__ulid",
 		"mitt": "^3.0.1",
 		"msgpackr": "^1.11.2",
-		"rollup": "^4.27.4"
+		"rollup": "^4.27.4",
+		"zod": "^3.24.1"
 	}
 }

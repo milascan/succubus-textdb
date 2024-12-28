@@ -1,6 +1,7 @@
 <script>
     import Basic from "$lib/layouts/basic.svelte";
     import { getContext } from "svelte";
+    import Doc from "./doc.svelte";
     const api = getContext("api");
     const path = [];
 
@@ -15,7 +16,7 @@
         <div class="">加载中...</div>
     {:then items}
         {#each items as item}
-            <Self {...item} />
+            <Doc {...item} />
         {/each}
     {/await}
 </Basic>

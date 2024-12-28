@@ -7,6 +7,6 @@ export const POST = async ({ request }) => {
     const { path } = await request_data(request);
     return transfer(await get_items(path));
   } catch (e) {
-    return error(400, e);
+    return error(400, e.toString());
   }
 };

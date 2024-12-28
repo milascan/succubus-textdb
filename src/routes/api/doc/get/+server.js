@@ -19,6 +19,6 @@ export const POST = async ({ request }) => {
       headers: { "Access-Control-Allow-Origin": "*" },
     });
   } catch (e) {
-    return error(400, e);
+    return error(400, e.toString());
   }
 };

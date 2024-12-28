@@ -5,7 +5,7 @@ import { error } from "@sveltejs/kit";
 export const POST = async ({ request }) => {
   try {
     const { path } = await request_data(request);
-    return await get(path);
+    return transfer(await get(path));
   } catch (e) {
     return error(400, e);
   }

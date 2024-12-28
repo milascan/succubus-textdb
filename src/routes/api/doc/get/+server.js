@@ -1,5 +1,5 @@
 import { get } from "$lib/db/docs.server.ts";
-import { request_data } from "$lib/utils.ts";
+import { request_data, transfer } from "$lib/utils.ts";
 import { error } from "@sveltejs/kit";
 
 export const OPTIONS = () => {

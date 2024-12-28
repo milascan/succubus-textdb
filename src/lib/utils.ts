@@ -10,6 +10,7 @@ export const request_data = async (request: Request) => {
 
 export const transfer = (data: unknown, opts: ResponseInit = {}) =>
   new Response(encode(data), {
+    ...opts,
     headers: {
       "Content-Type": "application/octet-stream",
       ...(opts.headers ?? {}),

@@ -1,6 +1,8 @@
-export const load = async ({ parent, fetch, params }) => {
-  const { api } = await parent();
+export const load = async ({ parent, fetch, params: { id } }) => {
+  const { api, path } = await parent();
+  const doc = await api("/api/doc/get", { id }, { fetch });
   return {
-    doc: await api("/api/doc/get", { id: params.id }, { fetch }),
+    doc,
+    path: path.concat([{ label: doc.title, href: `/语料库/${id}` }]),
   };
 };

@@ -54,7 +54,7 @@ export const get = async (path: string[]) => {
   if (res) {
     return map_doc(res);
   } else {
-    throw "invalid doc path";
+    throw null;
   }
 };
 

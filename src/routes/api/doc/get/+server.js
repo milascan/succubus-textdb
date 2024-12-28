@@ -3,7 +3,7 @@ import { request_data } from "$lib/utils.ts";
 import { error } from "@sveltejs/kit";
 
 export const OPTIONS = () => {
-  return new Response({
+  return new Response(null, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, OPTIONS",

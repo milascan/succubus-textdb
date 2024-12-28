@@ -8,9 +8,10 @@ export const request_data = async (request: Request) => {
   return decode(new Uint8Array(buffer));
 };
 
-export const transfer = (data: unknown) =>
+export const transfer = (data: unknown, opts: ResponseInit = {}) =>
   new Response(encode(data), {
     headers: {
       "Content-Type": "application/octet-stream",
+      ...(opts.headers ?? {}),
     },
   });

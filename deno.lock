@@ -2389,6 +2389,7 @@
       "dependencies": [
         "npm:@deno/vite-plugin@latest",
         "npm:@iconify-json/material-symbols@^1.2.6",
+        "npm:@jsr/olli__kvdex@*",
         "npm:@jsr/std__ulid@*",
         "npm:@rollup/plugin-commonjs@^28.0.1",
         "npm:@rollup/plugin-json@^6.1.0",

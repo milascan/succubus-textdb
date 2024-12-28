@@ -1,5 +1,6 @@
 <script>
     import { getContext } from "svelte";
+    import Self from "./doc.svelte";
 
     let { title, content, ctime, mtime, path } = $props();
     const api = getContext("api");

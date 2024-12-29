@@ -2,7 +2,9 @@
     import Basic from "$lib/layouts/basic.svelte";
     import { getContext } from "svelte";
     import Doc from "../../doc.svelte";
-    import { goto } from "$app/navigation";
+    import { goto, invalidateAll } from "$app/navigation";
+    import PopupFrame from "$lib/components/popup-frame.svelte";
+    import TextField from "$lib/components/text-field.svelte";
     const api = getContext("api");
 
     let { data } = $props();
@@ -13,6 +15,15 @@
             await api("/api/doc/remove", { id: doc.id });
             alert("已删除！");
             goto("/语料库/detail/" + doc.path.slice(0, -1).join("/"));
+        }
+    }
+
+    async function 保存(callback) {
+        if (confirm("确认保存？")) {
+            await api("/api/doc/set", { docs: [doc] });
+            alert("已保存！");
+            await invalidateAll();
+            callback?.();
         }
     }
 
@@ -32,10 +43,32 @@
                 <div>修改: {new Date(doc.mtime).toLocaleString()}</div>
             </div>
             <div class="flex-1 flex justify-end gap-2">
-                <button class="hue-prim {button_class}">
-                    <div class="i-mdi:edit-outline"></div>
-                    <div>编辑</div>
-                </button>
+                <PopupFrame title="编辑" fill>
+                    {#snippet Button({ show: onclick })}
+                        <button class="hue-prim {button_class}" {onclick}>
+                            <div class="i-mdi:edit-outline"></div>
+                            <div>编辑</div>
+                        </button>
+                    {/snippet}
+                    {#snippet View({ hide })}
+                        <div class="box-fill divide-(y solid hue-3)">
+                            <TextField
+                                class="flex-1 p-4 text-(hue-11 wrap)"
+                                bind:value={doc.content}
+                            ></TextField>
+                            <div class="flex p-2 md:justify-end">
+                                <button
+                                    class="hue-prim button button-base tint px-4 text-hue-11"
+                                    onclick={async () => {
+                                        await 保存(hide);
+                                    }}
+                                >
+                                    保存
+                                </button>
+                            </div>
+                        </div>
+                    {/snippet}
+                </PopupFrame>
                 <button class="hue-err {button_class}" onclick={删除}>
                     <div class="i-mdi:delete-outline"></div>
                     <div>删除</div>

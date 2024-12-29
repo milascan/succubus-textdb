@@ -10,14 +10,14 @@
     <div
         class="box divide-(y solid hue-3)
         lt-md:(bg-hue-2 border-b-(1 solid hue-4))
-        md:(card p-4 w-screen-sm self-center)"
+        md:(card py-4 w-screen-sm self-center)"
     >
-        <h1 class="text-2xl p-4">{doc.title}</h1>
+        <h1 class="text-2xl px-6 py-4">{doc.title}</h1>
         <div class="py-4">
             <Doc {...doc} headless />
         </div>
         <div
-            class="p-4 text-wrap ws-pre lh-loose {doc.content
+            class="px-6 py-4 text-wrap ws-pre lh-loose {doc.content
                 ? 'text-hue-11 font-serif'
                 : 'text-hue-10 font-italic'}"
         >

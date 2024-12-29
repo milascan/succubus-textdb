@@ -22,7 +22,9 @@
     }
 
     const indent_style = $derived(`padding-left: ${indent * 16}px`);
-    const inner_style = $derived(`padding-left: ${(indent + 1) * 16}px`);
+    const inner_style = $derived(
+        `padding-left: ${(headless ? indent : indent + 1) * 16}px`,
+    );
     const head_class = "flex px-4 gap-2 items-stretch text-start";
 </script>
 
@@ -57,17 +59,17 @@
                 class="{head_class} py-2 text-hue-10 font-italic"
                 style={inner_style}
             >
-                加载中...
+                <div class="px-4 ps-8">加载中...</div>
             </div>
         {:then items}
             {#each items as item}
-                <Self {...item} indent={indent + 1} />
+                <Self {...item} indent={headless ? indent : indent + 1} />
             {:else}
                 <div
                     class="{head_class} py-2 text-hue-10 font-italic"
                     style={inner_style}
                 >
-                    无项目
+                    <div class="px-4 ps-8">无项目</div>
                 </div>
             {/each}
         {/await}

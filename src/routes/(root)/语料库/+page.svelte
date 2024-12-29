@@ -16,7 +16,7 @@
         <div class="p-4 text-hue-10 font-italic">加载中...</div>
     {:then items}
         <div
-            class="box lt-md:(bg-hue-2 border-b-(1 solid hue-4)) md:(card p-4)"
+            class="box lt-md:(bg-hue-2 border-b-(1 solid hue-4)) md:(card py-4)"
         >
             {#each items.sort((a, b) => sort_str(a.id, b.id)) as item}
                 <Doc {...item} />

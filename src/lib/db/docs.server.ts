@@ -2,6 +2,7 @@ import { collection, Document, kvdex, model } from "@olli/kvdex";
 import { decodeTime, monotonicUlid } from "@std/ulid";
 import z from "zod";
 import { kv } from "$lib/db/db.server.ts";
+import { v8Encoder } from "@olli/kvdex/encoding";
 
 export const DocumentParamsModel = z.object({
   title: z.string(),
@@ -28,6 +29,7 @@ const db = kvdex({
           path: "primary",
           parent: "secondary",
         },
+        encoder: v8Encoder(),
       },
     ),
   },

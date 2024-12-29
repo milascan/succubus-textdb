@@ -84,3 +84,7 @@ export const set = async (doc: TDocumentParams) => {
     },
   }, { batched: true });
 };
+
+export const remove = async (id: string) => {
+  await db.docs.delete(id);
+};

@@ -46,7 +46,7 @@
                 ></div>
             </button>
             <a href="{base}/detail/{path.join('/')}" class="flex-1 flex">
-                <div class="flex-1 py-2 text-lg">{title}</div>
+                <div class="flex-1 py-2 text-(lg wrap)">{title}</div>
                 <div class="flex-none self-center text-hue-10 font-italic">
                     {new Date(mtime).toLocaleDateString()}
                 </div>

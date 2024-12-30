@@ -45,6 +45,26 @@ export const get_items = async (parent_path: string[]) => {
   return res.result.map(map_doc);
 };
 
+const wait = (t: number) => new Promise((res) => setTimeout(res, t));
+
+export async function* get_all() {
+  let cursor, result;
+  let more = true;
+  while (more) {
+    try {
+      const res = await db.docs.getMany({ limit: 20, cursor });
+      cursor = res.cursor;
+      result = res.result;
+      console.log("=>", res.cursor);
+      if (cursor === undefined) more = false;
+      yield result.map(map_doc);
+    } catch (e) {
+      console.error(e);
+      await wait(5000);
+    }
+  }
+}
+
 export const has = async (path: string[]) => {
   const res = await db.docs.findByPrimaryIndex("path", path);
   return !!res;

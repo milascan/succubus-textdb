@@ -11,7 +11,8 @@
     "test:unit": "vitest",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "clear-kv": "deno run --env-file=.env.local -A src/tasks/clear-kv.js"
+    "clear-kv": "deno run --env-file=.env.local -A src/tasks/clear-kv.js",
+    "fetch-data": "deno run --env-file=.env.local -A src/tasks/fetch-data.js"
   },
   "devDependencies": {
     "@deno/vite-plugin": "latest",
